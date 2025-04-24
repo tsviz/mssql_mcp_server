@@ -19,6 +19,22 @@ The package will automatically install required system dependencies (like FreeTD
 pip install mssql-mcp-server
 ```
 
+You can run it in a docker container or as a standalone server. The server is designed to be used with AI assistants like GitHub Copilot, Claude Desktop, and others that support the Model Context Protocol (MCP).
+
+### Example Docker Usage
+To run the MCP server in a Docker container, you can use the following command. Make sure to replace the environment variables with your actual SQL Server credentials and database information and other necessary configurations.
+
+```bash
+docker run -it --rm \
+  -e ACCEPT_EULA=Y \
+  -e MSSQL_SERVER=localhost \
+  -e MSSQL_PORT=1433 \
+  -e MSSQL_USER=your_username \
+  -e MSSQL_PASSWORD=your_password \
+  -e MSSQL_DATABASE=your_database \
+  ghcr.io/tsviz/mssql-mcp-server:latest
+```
+
 ## Configuration
 
 Set the following environment variables:
@@ -31,6 +47,55 @@ MSSQL_DATABASE=your_database
 ```
 
 ## Usage
+
+### With GitHub Copilot on VSCode on a Local Machine with Docker
+To use this MCP server with GitHub Copilot in Visual Studio Code, you can run it as a Docker container locally. This allows you to easily manage dependencies and isolate the environment.
+Add this to your `settings.json`:
+
+```json
+{
+  "mcp": {
+    "servers": {
+    "mssql": {
+      "command": "docker",
+      "args": [
+          "run",
+          "-i",
+          "--rm",
+          "-e", "ACCEPT_EULA=Y",
+          "-e", "MSSQL_SERVER=host.docker.internal",
+          "-e", "MSSQL_PORT=1433",
+          "-e", "MSSQL_USER=user_name",
+          "-e", "MSSQL_PASSWORD=YourStrong!Passw0rd",
+          "-e", "MSSQL_DATABASE=database_name",
+          "ghcr.io/tsviz/mssql-mcp-server:latest"
+      ]
+    }
+   }
+  }
+}
+
+```json
+{
+  "mcpServers": {
+    "mssql": {
+      "command": "uv",
+      "args": [
+        "--directory", 
+        "path/to/mssql_mcp_server",
+        "run",
+        "mssql_mcp_server"
+      ],
+      "env": {
+        "MSSQL_SERVER": "localhost",
+        "MSSQL_USER": "your_username",
+        "MSSQL_PASSWORD": "your_password",
+        "MSSQL_DATABASE": "your_database"
+      }
+    }
+  }
+}
+```
 
 ### With Claude Desktop
 
