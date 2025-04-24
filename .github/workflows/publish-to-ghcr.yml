@@ -35,3 +35,5 @@ jobs:
             ghcr.io/${{ github.repository_owner }}/mssql-mcp-server:${{ github.run_number }}
           cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/mssql-mcp-server:latest
           cache-to: type:inline
+          build-args: |
+            BUILDKIT_INLINE_CACHE=1
