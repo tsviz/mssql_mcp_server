@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   mssql_mcp_server:
-    image: tsviz/mssql-mcp-server:123
+    image: tsviz/mssql-mcp-server:latest
     build: .
     ports:
       - "8000:8000"

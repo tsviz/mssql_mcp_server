@@ -32,6 +32,6 @@ jobs:
           push: true
           tags: |
             ghcr.io/${{ github.repository_owner }}/mssql-mcp-server:latest
-            ghcr.io/${{ github.repository_owner }}/mssql-mcp-server:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/mssql-mcp-server:${{ github.run_number }}
           cache-from: type=registry,ref=ghcr.io/${{ github.repository_owner }}/mssql-mcp-server:latest
           cache-to: type:inline
