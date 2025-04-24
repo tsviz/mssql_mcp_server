@@ -74,27 +74,6 @@ Add this to your `settings.json`:
    }
   }
 }
-
-```json
-{
-  "mcpServers": {
-    "mssql": {
-      "command": "uv",
-      "args": [
-        "--directory", 
-        "path/to/mssql_mcp_server",
-        "run",
-        "mssql_mcp_server"
-      ],
-      "env": {
-        "MSSQL_SERVER": "localhost",
-        "MSSQL_USER": "your_username",
-        "MSSQL_PASSWORD": "your_password",
-        "MSSQL_DATABASE": "your_database"
-      }
-    }
-  }
-}
 ```
 
 ### With Claude Desktop
